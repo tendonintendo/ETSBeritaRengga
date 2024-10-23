@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita News</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .news-list-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .news-item {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        .news-link {
+            display: flex;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .news-thumbnail {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .news-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .news-info h2 {
+            font-size: 22px;
+            margin: 0 0 10px;
+        }
+
+        .news-info p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .detail-container {
+            display: none;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="news-list-container" id="news-list">
+        <h1>Berita News</h1>
+
+        <div class="news-item">
+            <a href="#" class="news-link" onclick="showDetail(1)">
+                <img src="gambar-berita1.jpg" alt="Berita 1" class="news-thumbnail">
+                <div class="news-info">
+                    <h2>4 Profesor ITS Masuk Top 2% Peneliti di Dunia</h2>
+                    <p>Dipublikasikan pada: 23 September 2024</p>
+                    <p>Empat profesor dari ITS berhasil mencapai prestasi luar biasa dalam dunia penelitian.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="news-item">
+            <a href="#" class="news-link" onclick="showDetail(2)">
+                <img src="gambar-berita2.jpeg" alt="Berita 2" class="news-thumbnail">
+                <div class="news-info">
+                    <h2>Angin Puting Beliung Rusak 10 Rumah di Amfoang Kupang</h2>
+                    <p>Dipublikasikan pada: 21 Oktober 2024</p>
+                    <p>Sebuah angin puting beliung menyebabkan kerusakan signifikan pada beberapa rumah.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="news-item">
+            <a href="#" class="news-link" onclick="showDetail(3)">
+                <img src="gambar-berita3.jpeg" alt="Berita 3" class="news-thumbnail">
+                <div class="news-info">
+                    <h2>Unik! Monyet Marmoset Ternyata Gunakan Nama untuk Berkomunikasi Satu Sama Lain</h2>
+                    <p>Dipublikasikan pada: 20 Oktober 2024</p>
+                    <p>Penelitian menunjukkan bahwa monyet marmoset memiliki cara unik untuk berkomunikasi.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="detail-container" id="news-detail">
+        <h1 id="detail-title"></h1>
+        <img id="detail-image" alt="Detail Berita" style="width: 100%; height: auto; margin-bottom: 15px;">
+        <p id="detail-date"></p>
+        <div id="detail-content"></div>
+        <button class="back-button" onclick="goBack()">Kembali ke Daftar Berita</button>
+    </div>
+
+    <script>
+        const newsData = [
+            {
+                title: "4 Profesor ITS Masuk Top 2% Peneliti di Dunia",
+                date: "Dipublikasikan pada: 23 September 2024",
+                content: "Empat profesor ITS tersebut adalah Prof Ir I Nyoman Pujawan MEng PhD, Prof Drs Ec Ir Riyanarto Sarno MSc PhD, Prof Tohari Ahmad SKom MIT PhD, dan Prof Adi Setyo Purnomo SSi MSc PhD. Para peneliti ini tercatat sebagai bagian dari 2 persen atau 100.000 peneliti teratas dari jutaan peneliti di seluruh dunia.",
+                image: "gambar-berita1.jpg"
+            },
+            {
+                title: "Angin Puting Beliung Rusak 10 Rumah di Amfoang Kupang",
+                date: "Dipublikasikan pada: 21 Oktober 2024",
+                content: "Kupang - Angin puting beliung menerjang wilayah Kecamatan Amfoang Barat Daya, Kabupaten Kupang, Nusa Tenggara Timur (NTT). Akibatnya, 10 rumah di RT 11, RW 06, Dusun 3, Desa Manubelon, dilaporkan rusak. Peristiwa itu terjadi pada Senin (21/10/2024) sekitar pukul 16.00 Wita.",
+                image: "gambar-berita2.jpeg"
+            },
+            {
+                title: "Unik! Monyet Marmoset Ternyata Gunakan Nama untuk Berkomunikasi Satu Sama Lain",
+                date: "Dipublikasikan pada: 20 Oktober 2024",
+                content: "Jakarta - Pernahkah bertanya-tanya apakah hewan memiliki nama panggilan di antara sesamanya? Tampaknya teka-teki ini mulai bisa terjawab melalui penelitian yang dilakukan terhadap primata. Belum lama ini, ilmuwan menemukan bahwa monyet marmoset ternyata punya nama panggilan.Dalam sebuah penelitian dari Universitas Ibrani Yerusalem, ditemukan bahwa monyet marmoset memiliki cara unik saat berkomunikasi satu sama lain. Peneliti menemukan adanya kode suara yang mengindikasikan panggilan nama untuk menyebut individu tertentu.",
+                image: "gambar-berita3.jpeg"
+            }
+        ];
+
+        function showDetail(index) {
+            const detail = newsData[index - 1]; 
+            document.getElementById('detail-title').innerText = detail.title;
+            document.getElementById('detail-date').innerText = detail.date;
+            document.getElementById('detail-content').innerText = detail.content;
+            document.getElementById('detail-image').src = detail.image;
+            document.getElementById('news-list').style.display = 'none';
+            document.getElementById('news-detail').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('news-list').style.display = 'block';
+            document.getElementById('news-detail').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
